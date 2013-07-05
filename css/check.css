@@ -1,0 +1,106 @@
+#date-val
+{
+  width: 110px;
+  color: #555;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  padding: 2px 8px 2px 8px;
+  background-color: #efefef;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  cursor: pointer;
+}
+
+#refresh 
+{
+  vertical-align: middle;
+}
+
+.small
+{
+  font-size: 14px;
+}
+
+.removed
+{
+  background-image: url('../images/removed_bg.png');
+  background-repeat: repeat-x;
+}
+
+.deleted
+{
+  color: #852d2d;
+}
+
+.added
+{
+  color: #88a25f;
+}
+
+.unknown
+{
+  color: #999;
+}
+
+#friend-results-container
+{
+  margin: 0 auto;
+  float: left;
+  width: 100%;
+}
+
+#friend-result
+{
+  width: 100%;
+  margin-bottom: 8px;
+  height: 20px;
+  float: left;
+}
+
+#friend-result:hover
+{
+  background-color: #efefef;
+}
+
+#friend-result #type
+{
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  float: left;
+}
+
+#friend-result #name
+{
+  margin-right: 4px;
+  text-align: left;
+  float: left;
+}
+
+#friend-result #cause
+{
+  text-align: left;
+  float: left;
+
+}
+
+#friend-result #time
+{
+  float: right;
+  padding-right: 4px;
+  color: #999;
+}
+
+#friend-result #type .happy
+{
+  color: #3b5998;
+}
+
+#friend-result #type .sad
+{
+  color: #852d2d;
+}
+
