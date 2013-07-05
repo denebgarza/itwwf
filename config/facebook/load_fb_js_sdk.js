@@ -14,8 +14,6 @@ window.fbAsyncInit = function() {
   FB.Event.subscribe('auth.login', function(response) {
     window.location.reload();
   });
-  
-  FB.Canvas.setSize({ width: 640, height: 480 });
 };
 
 // Load the SDK asynchronously
