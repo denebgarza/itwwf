@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-07-05 19:44:11
+<?php /* Smarty version Smarty-3.1.13, created on 2013-07-05 19:59:48
          compiled from "views\check.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1234651d3c5c571c886-34280326%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c26e6dbb95cf941a6d255ca1ba4f0455146467cf' => 
     array (
       0 => 'views\\layout.tpl',
-      1 => 1373071443,
+      1 => 1373072387,
       2 => 'file',
     ),
   ),
@@ -145,7 +145,7 @@ $_smarty_tpl->tpl_vars['friend']->_loop = true;
 
       </div>
       <div class="container-footer">
-        <a href="?page=about">About</a> _ <a href="?page=privacy">Privacy policy</a> _ <a href="?page=contact">Contact</a>
+        <a href="?page=about">About</a> | <a href="?page=privacy">Privacy policy</a> | <a href="?page=contact">Contact</a>
       </div>
       <div style="clear: both;"></div>
     </div>
