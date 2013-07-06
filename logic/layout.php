@@ -31,5 +31,7 @@
   $user_count = mysql_num_rows($q);
   $smarty->assign('user_count', $user_count);
   $smarty->assign($page);
-  $smarty->display($page.'.tpl');
+  
+  if(file_exists('views/'.$page.'.tpl'))
+    $smarty->display($page.'.tpl');
 ?>
