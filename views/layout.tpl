@@ -23,6 +23,9 @@
         {block name=content}
         {/block}
       </div>
+      <div class="container-footer">
+        <a href="?page=about">About</a> _ <a href="?page=privacy">Privacy policy</a> _ <a href="?page=contact">Contact</a>
+      </div>
       <div style="clear: both;"></div>
     </div>
     <div class="footer">

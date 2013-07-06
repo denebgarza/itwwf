@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-07-04 20:27:18
+<?php /* Smarty version Smarty-3.1.13, created on 2013-07-05 19:44:11
          compiled from "views\check.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1234651d3c5c571c886-34280326%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b884f9c9949cd97ba2ffc57fdbaa3aadeff228a7' => 
     array (
       0 => 'views\\check.tpl',
-      1 => 1372987634,
+      1 => 1373016994,
       2 => 'file',
     ),
     'c26e6dbb95cf941a6d255ca1ba4f0455146467cf' => 
     array (
       0 => 'views\\layout.tpl',
-      1 => 1372974220,
+      1 => 1373071443,
       2 => 'file',
     ),
   ),
@@ -39,16 +39,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     
     <link rel="stylesheet" type="text/css" href="css/check.css" />
     <!-- <link rel="stylesheet" type="text/css" href="css/calendarview.css" /> -->
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
 
     
     
   </head>
   <body>
     <div class="container">
+      <a href="?page=check">
       <div class="header">
         I Thought We Were Friends :'(
       </div>
+      </a>
       <div class="content">
         <div id="fb-root"></div>
         <script src="config/facebook/load_fb_js_sdk.js"></script>
@@ -57,34 +59,35 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <fb:login-button show-faces="false" max-rows="1" style="width: auto; float: center;" size="large">Login to Facebook</fb:login-button>
 <?php }else{ ?>
   
-      <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-      <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
       <!-- <script src="javascript/calendarview.js"></script> -->
       <script src="javascript/check.js"></script>
   
-  <?php if (!$_smarty_tpl->tpl_vars['first_time']->value){?>
-        <strong>Welcome <a href="http://facebook.com/<?php echo $_smarty_tpl->tpl_vars['user_id']->value;?>
+  <?php if ($_smarty_tpl->tpl_vars['first_time']->value){?>
+        <strong>Welcome <a href="https://facebook.com/<?php echo $_smarty_tpl->tpl_vars['user_id']->value;?>
 " target="top"><?php echo $_smarty_tpl->tpl_vars['user_name']->value;?>
 </a></strong><br />
         It appears this is your first time here!<br /><br />
         Some introductory message is supposed to go here. I'll figure this out when it's released to the general public.
         <br /><a href="#" onclick="window.location.reload();">Aight</a>
   <?php }else{ ?>
-        <a href="http://facebook.com/<?php echo $_smarty_tpl->tpl_vars['user_id']->value;?>
+        <a href="https://facebook.com/<?php echo $_smarty_tpl->tpl_vars['user_id']->value;?>
 " target="top"><?php echo $_smarty_tpl->tpl_vars['user_name']->value;?>
 's</a> friend summary for <strong><?php echo $_smarty_tpl->tpl_vars['date_display']->value;?>
-</strong> <img src="images/refresh.gif" id="refresh" />
+</strong> <img src="images/refresh.gif" alt="refresh" id="refresh" />
         <br />
         <input type="text" id="date-val" />
         <!-- <span id="date" name="date"><?php echo $_smarty_tpl->tpl_vars['date_display']->value;?>
 </span> <input type="hidden" id="date_val" name="date_val" /> -->
         <br /><br />
     <?php if ($_smarty_tpl->tpl_vars['user_time']->value-24*60*60>$_smarty_tpl->tpl_vars['time_date']->value){?>
-        You can't see dates from before you started using this application!
+        You can't see dates from before you started using this application (<a href="?d=<?php echo $_smarty_tpl->tpl_vars['date_join']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['date_join_display']->value;?>
+</a>)<br />
+        
     <?php }elseif($_smarty_tpl->tpl_vars['time_date']->value>=$_smarty_tpl->tpl_vars['time_tomorrow']->value){?>
-        <p>
-          Predicting the future isn't possible yet. However, if the universe is completely <a href="https://en.wikipedia.org/wiki/Determinism" target="top">deterministic</a>, it is certain we will be able to predict the future someday.
-        </p>
+        Predicting the future isn't possible yet. However, if the universe is completely <a href="https://en.wikipedia.org/wiki/Determinism" target="top">deterministic</a>, perhaps we will be able to predict the future someday.
     <?php }else{ ?>
       <?php if (count($_smarty_tpl->tpl_vars['friends_changed']->value)>0){?>  
           <div id="friend-results-container">
@@ -140,6 +143,9 @@ $_smarty_tpl->tpl_vars['friend']->_loop = true;
   <?php }?>
 <?php }?>
 
+      </div>
+      <div class="container-footer">
+        <a href="?page=about">About</a> _ <a href="?page=privacy">Privacy policy</a> _ <a href="?page=contact">Contact</a>
       </div>
       <div style="clear: both;"></div>
     </div>
