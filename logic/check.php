@@ -46,15 +46,15 @@
       $first_time = true;
       $user_friends_json = mysql_real_escape_string($user_friends_json);
       // mysql_query('INSERT INTO users (id, time, last_check, user_id, user_friends_json, access_token) VALUES (\'\', \''.time().'\', \''.time().'\', \''.$user.'\', \''.$user_friends_json.'\', \''.$user_access_token.'\')')or die(mysql_error());
-      $db->query('INSERT INTO users (id, time, last_check, user_id,
+      $db->runQuery('INSERT INTO users (id, time, last_check, user_id,
                   user_friends_json, access_token) VALUES 
                   (\'\', \''.time().'\', \''.time().'\', \''.$user.'\', \''.$user_friends_json.'\', \''.$user_access_token.'\')');
     } else {
       // User has used app before
       // $user_friends_json_old = mysql_result($q, 0, 'user_friends_json');
       // $user_last_check = mysql_result($q, 0, 'last_check');
-      $user_friends_json_old = $db->getResult('', 0, 'user_friends_json');
-      $user_last_check = $db->getResult('', 0, 'last_check');
+      $user_friends_json_old = $db->getResult(0, 'user_friends_json');
+      $user_last_check = $db->getResult(0, 'last_check');
       $changes = false;
       
       if($user_friends_json_old != $user_friends_json) {
@@ -87,7 +87,7 @@
               $type = ActionTypes::deactivated;
             }
             // mysql_query('INSERT INTO history (id, user_id, friend_id, friend_name, type, time) VALUES (\'\', \''.$user.'\', \''.$friend['id'].'\', \''.$friend['name'].'\', \''.$type.'\', \''.time().'\')')or die(mysql_error());
-            $db->query('INSERT INTO history (id, user_id, friend_id, friend_name, type, time)
+            $db->runQuery('INSERT INTO history (id, user_id, friend_id, friend_name, type, time)
             VALUES (\'\', \''.$user.'\', \''.$friend['id'].'\', \''.$friend['name'].'\', \''.$type.'\', \''.time().'\')');
           }
         }
@@ -113,21 +113,20 @@
             else
               $type = ActionTypes::added;
               
-            $db->query('INSERT INTO history (id, user_id, friend_id, friend_name, type, time) VALUES (\'\', \''.$user.'\', \''.$friend['id'].'\', \''.$friend['name'].'\', \''.$type.'\', \''.time().'\')');
+            $db->runQuery('INSERT INTO history (id, user_id, friend_id, friend_name, type, time) VALUES (\'\', \''.$user.'\', \''.$friend['id'].'\', \''.$friend['name'].'\', \''.$type.'\', \''.time().'\')');
           }
         }
         
         $user_friends_json = mysql_real_escape_string($user_friends_json);
         // mysql_query('UPDATE users SET `user_friends_json` = \''.$user_friends_json.'\' WHERE `user_id` = \''.$user.'\'')or die(mysql_error());
-        $db->query('UPDATE users SET `user_friends_json` = \''.$user_friends_json.'\' WHERE `user_id` = \''.$user.'\'');
+        $db->runQuery('UPDATE users SET `user_friends_json` = \''.$user_friends_json.'\' WHERE `user_id` = \''.$user.'\'');
       }
       
       // mysql_query('UPDATE users SET `last_check` = \''.time().'\' WHERE `user_id` = \''.$user.'\'')or die(mysql_error());
-      $db->query('UPDATE users SET `last_check` = \''.time().'\' WHERE `user_id` = \''.$user.'\'');
+      $db->runQuery('UPDATE users SET `last_check` = \''.time().'\' WHERE `user_id` = \''.$user.'\'');
     }
     
-    $q = 'SELECT * FROM history WHERE user_id = \''.$user.'\' AND time > \''.$time_date.'\' AND time < \''.($time_date + 24 * 60 * 60).'\'';
-    $db->query($q, true);
+    $db->setQuery('SELECT * FROM history WHERE user_id = \''.$user.'\' AND time > \''.$time_date.'\' AND time < \''.($time_date + 24 * 60 * 60).'\'');
     $history_res = $db->fetchArray();
     
     foreach($history_res as $friend) {
