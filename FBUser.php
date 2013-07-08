@@ -44,5 +44,9 @@
       else
         return null;
     }
+    
+    public function getAccessToken() {
+      return $this->access_token;
+    }
   }
 ?>
