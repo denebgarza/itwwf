@@ -9,30 +9,36 @@
   class AppUser extends User
   {
     private $db = null;
+    private $join_time = 0;
+    private $last_check;
     
     function __construct($id, $db) {
+      $last_check = time();
       if($id && $db) {
-        $this->db = $db;
+        $this->db = new MySQL();
         $this->db->setQuery('SELECT * FROM users WHERE user_id = '.$id.' LIMIT 1');
-        $this->id = $db->getResult(0, 'user_id');
-        
-        if($id) { // If the user exists in the database
+        $this->id = $this->db->getResult(0, 'user_id');
+
+        if($this->id) { // If the user exists in the database
           // $this->name = $db->getResult($q, 0, 'name');
-          $this->friends_json = $db->getResult(0, 'user_friends_json'); // ### REMOVE 'user_' ###
-          $this->friends_array = json_decode($this->friends_json);
+          $this->friends_json = $this->db->getResult(0, 'user_friends_json'); // ### REMOVE 'user_' ###
+          $this->friends_array = json_decode($this->friends_json, true);
         }
       }
     }
     
     public function getLastCheck() {
-      return $this->db->getResult(0, 'last_check');
+      if(!$this->last_check) $this->last_check = $this->db->getResult(0, 'last_check');
+      return $this->last_check;
     }
     
     public function getJoinTime() {
-      return $this->db->getResult(0, 'time');
+      if(!$this->join_time) $this->join_time = $this->db->getResult(0, 'time');
+      return $this->join_time;
     }
     
     public function getName() { 
+      // supposed to get name from database
       return null;
     }
   }
