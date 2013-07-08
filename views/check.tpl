@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="css/jquery-ui.css" />
 {/block}
 {block name=content}
-{if !$user}
+{if !$user_id}
 <fb:login-button show-faces="false" max-rows="1" style="width: auto; float: center;" size="large">Login to Facebook</fb:login-button>
 {else}
   {block name=scripts}
