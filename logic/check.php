@@ -52,8 +52,6 @@
       if($appUser->getFriends('json') != $fbUser->getFriends('json')) {
         // User's friends list has changed since his/her last visit
         $friends_compare = array();
-        echo sizeof($fbUser->getFriends('array'));
-
 
         foreach($fbUser->getFriends('array') as $friend) {
           $friends_compare['\''.$friend['id'].'\''] = 1;
