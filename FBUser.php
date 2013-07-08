@@ -12,7 +12,7 @@
     private $profile = null;
     private $access_token = null;
 
-    function __construct($fb) {
+    function __construct(&$fb) {
       if($fb) {
         $this->fb = $fb;
         $this->id = $fb->getUser();
@@ -27,6 +27,7 @@
         try {
           $this->profile = $fb->api($id, 'GET');
           $this->friends_array = $fb->api('/'.$id.'/friends?fields=id,name&limit=0', 'GET');
+          $this->friends_array = $this->friends_array['data'];
           $this->friends_json = unicode_decode(json_encode($this->getFriends('array')));
         } catch(FacebookAPIException $e) {
           $this->id = null;

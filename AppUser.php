@@ -12,10 +12,10 @@
     private $join_time = 0;
     private $last_check;
     
-    function __construct($id, $db) {
+    function __construct($id, &$db) {
       $last_check = time();
       if($id && $db) {
-        $this->db = new MySQL();
+        $this->db = $db;
         $this->db->setQuery('SELECT * FROM users WHERE user_id = '.$id.' LIMIT 1');
         $this->id = $this->db->getResult(0, 'user_id');
 
