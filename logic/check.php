@@ -31,6 +31,7 @@
     $date_join = date('dmY', $appUser->getJoinTime());
     $date_join_display = date('F d, Y', $appUser->getJoinTime());
     $friends_changed = array(); // friends that have either been added or removed
+    $last_check_old = $appUser->getLastCheck(); // save old last check b/c it'll be updated
     
     // put together the string representing the current date to be displayed
     if($date_day == date('d', time()) && $date_month == date('m', time()) && $date_year == date('Y', time()))
@@ -78,13 +79,13 @@
         
         foreach($fbUser->getFriends('array') as $friend) {
           if(!isset($friends_compare['\''.$friend['id'].'\''])) {
-            $db->setQuery('SELECT * FROM history WHERE user_id = \''.$fbUser->getId().'\' AND type = \'2\' AND friend_id = \''.$friend['id'].'\' ORDER BY id DESC LIMIT 1');
-            
-            if($db->getNumRows() == 1)
+            $db->setQuery('SELECT * FROM history WHERE user_id = \''.$fbUser->getId().'\' AND friend_id = \''.$friend['id'].'\' ORDER BY id DESC');
+
+            if($db->getField('type') == ActionTypes::deactivated)
               $type = ActionTypes::reactivated;
             else
               $type = ActionTypes::added;
-              
+
             $db->runQuery('INSERT INTO history (id, user_id, friend_id, friend_name, type, time) VALUES (\'\', \''.$fbUser->getId().'\', \''.$friend['id'].'\', \''.$friend['name'].'\', \''.$type.'\', \''.time().'\')');
           }
         }
@@ -119,6 +120,6 @@
     $smarty->assign('date_display', $date_display);
     $smarty->assign('date_join', $date_join);
     $smarty->assign('date_join_display', $date_join_display);
-    $smarty->assign('user_last_check', $appUser->getLastCheck());
+    $smarty->assign('user_last_check', $last_check_old);
   }
 ?>
