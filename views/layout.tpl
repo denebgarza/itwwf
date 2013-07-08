@@ -24,7 +24,7 @@
         {/block}
       </div>
       <div class="container-footer">
-        <a href="?page=about">About</a> | <a href="?page=privacy">Privacy policy</a> | <a href="?page=contact">Contact</a>
+        <a href="?page=about">About</a> | <a href="?page=privacy">Privacy policy</a> | <a href="?page=faq">FAQ</a> | <a href="?page=contact">Contact</a>
       </div>
       <div style="clear: both;"></div>
     </div>

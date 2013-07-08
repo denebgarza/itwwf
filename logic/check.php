@@ -110,7 +110,6 @@
       $friends_changed[] = $friend_show;
     }
   
-    $smarty->assign('user_id', $fbUser->getId());
     $smarty->assign('user_name', $fbUser->getName());
     $smarty->assign('first_time', $first_time);
     $smarty->assign('time_tomorrow', mktime(0, 0, 0, date('n'), date('j'), date('Y')) + 24 * 60 * 60);
@@ -122,4 +121,7 @@
     $smarty->assign('date_join_display', $date_join_display);
     $smarty->assign('user_last_check', $last_check_old);
   }
+  
+  $smarty->assign('user_id', $fbUser->getId());
+
 ?>

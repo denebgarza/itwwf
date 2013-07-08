@@ -5,7 +5,9 @@
     'check', 
     'about', 
     'privacy', 
-    'contact'
+    'contact',
+    'faq',
+    'tos'
   );
   
   if(isset($_GET['page']))
