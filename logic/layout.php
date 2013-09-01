@@ -7,7 +7,8 @@
     'privacy', 
     'contact',
     'faq',
-    'tos'
+    'tos', 
+    'cpanel'
   );
   
   if(isset($_GET['page']))
