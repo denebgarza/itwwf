@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>I Thought We Were Friends :'(</title>
+    <title>I Thought We Were Friends</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/layout.css" />
     {block name=stylesheets}
