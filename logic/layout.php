@@ -30,8 +30,8 @@
   if(file_exists('logic/'.$page.'.php'))
     include('logic/'.$page.'.php');
     
-  $q = mysql_query('SELECT * FROM users');
-  $user_count = mysql_num_rows($q);
+  $db->setQuery('SELECT id FROM users');
+  $user_count = $db->getNumRows();
   $smarty->assign('user_count', $user_count);
   $smarty->assign($page);
   
